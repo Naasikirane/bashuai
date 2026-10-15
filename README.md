@@ -211,8 +211,40 @@ Your website will be live at:
 
 #### Included GitHub Pages Optimizations:
 - **Relative Asset Resolution**: Uses `base: process.env.VITE_BASE_PATH || './'`, ensuring all CSS, JavaScript, and images load correctly regardless of whether the site is served from a repository sub-path or custom root domain.
+- **`CNAME` Pre-configured**: Includes `public/CNAME` pointing to `www.bashuaialuminium.com`.
 - **`.nojekyll` Included**: Prevents GitHub's Jekyll engine from ignoring Vite asset bundles.
 - **SPA `404.html` Redirection**: Branded error and fallback page to prevent 404 errors on browser refresh.
+- **SEO & Canonical URLs**: Automated `sitemap.xml`, `robots.txt`, and structured data (JSON-LD) configured for `https://www.bashuaialuminium.com/`.
+
+---
+
+### 🌐 Custom Domain Setup (`www.bashuaialuminium.com` & `bashuaialuminium.com`)
+
+The repository is already configured with a `CNAME` file pointing to `www.bashuaialuminium.com`. Follow these quick steps to connect your domain:
+
+#### Step 1: Configure DNS Records at Your Domain Registrar
+Log in to where you purchased your domain (e.g., GoDaddy, Namecheap, Cloudflare, Google Domains/Squarespace, Hostinger) and open the **DNS Management / DNS Records** panel. Add the following records:
+
+1. **For Apex Domain (`bashuaialuminium.com`) — Add 4 `A` Records:**
+   | Type | Name / Host | Target / Value | TTL |
+   | :--- | :--- | :--- | :--- |
+   | `A` | `@` (or leave blank) | `185.199.108.153` | Automatic / 3600 |
+   | `A` | `@` (or leave blank) | `185.199.109.153` | Automatic / 3600 |
+   | `A` | `@` (or leave blank) | `185.199.110.153` | Automatic / 3600 |
+   | `A` | `@` (or leave blank) | `185.199.111.153` | Automatic / 3600 |
+
+2. **For `www` Subdomain (`www.bashuaialuminium.com`) — Add 1 `CNAME` Record:**
+   | Type | Name / Host | Target / Value | TTL |
+   | :--- | :--- | :--- | :--- |
+   | `CNAME` | `www` | `<YOUR-GITHUB-USERNAME>.github.io.` | Automatic / 3600 |
+
+*(Optional IPv6 `AAAA` records can also be added for `bashuaialuminium.com`: `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`).*
+
+#### Step 2: Confirm in GitHub Repository Settings
+1. In your GitHub repository, navigate to **Settings** > **Pages** (under *Code and automation*).
+2. Under **Custom domain**, verify that `www.bashuaialuminium.com` is entered (or enter it and click **Save**).
+3. GitHub Pages will verify the DNS check. Once verified, check the **Enforce HTTPS** box to activate free automated SSL encryption.
+4. GitHub Pages automatically handles routing and redirects between both `bashuaialuminium.com` and `www.bashuaialuminium.com`.
 
 ---
 
