@@ -1,0 +1,8 @@
+{
+  "name": "Bashuai | Aluminium & Glass Works",
+  "description": "Bashuai - The Fabricator. Precision architectural aluminium fabrication, structural curtain walls, frameless glass systems, doors, windows, and custom enclosures.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
