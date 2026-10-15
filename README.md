@@ -192,11 +192,27 @@ The fastest way to deploy this Vite application:
    - **Publish directory**: `dist`
 5. Click **Deploy Site**.
 
-### Deploy on GitHub Pages
+### Deploy on GitHub Pages (Automated with GitHub Actions)
 
-You can deploy directly to GitHub Pages using the included GitHub Actions workflow or the `gh-pages` package:
-1. In `vite.config.ts`, set `base: '/<REPO-NAME>/'` if deploying to `https://<USERNAME>.github.io/<REPO-NAME>/`.
-2. Push to `main` branch to trigger automated deployment.
+This repository includes a pre-configured automated GitHub Pages deployment workflow (`.github/workflows/deploy-pages.yml`) and relative asset path configuration (`base: './'`), so it works out of the box without requiring manual URL editing.
+
+#### 1. Enable GitHub Actions for Pages:
+1. Push your code to your GitHub repository.
+2. In your repository on GitHub, click **Settings** (gear icon).
+3. In the left navigation sidebar under *Code and automation*, click **Pages**.
+4. Under **Build and deployment** > **Source**, select **GitHub Actions** (instead of "Deploy from a branch").
+
+#### 2. Trigger Deployment:
+- Every time you push to the `main` branch, the `.github/workflows/deploy-pages.yml` workflow will automatically build your project and deploy it to GitHub Pages.
+- You can also manually trigger a build anytime under the **Actions** tab by selecting **Deploy to GitHub Pages** > **Run workflow**.
+
+Your website will be live at:
+`https://<YOUR-USERNAME>.github.io/<YOUR-REPO-NAME>/`
+
+#### Included GitHub Pages Optimizations:
+- **Relative Asset Resolution**: Uses `base: process.env.VITE_BASE_PATH || './'`, ensuring all CSS, JavaScript, and images load correctly regardless of whether the site is served from a repository sub-path or custom root domain.
+- **`.nojekyll` Included**: Prevents GitHub's Jekyll engine from ignoring Vite asset bundles.
+- **SPA `404.html` Redirection**: Branded error and fallback page to prevent 404 errors on browser refresh.
 
 ---
 
