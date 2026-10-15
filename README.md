@@ -203,14 +203,21 @@ This repository includes a pre-configured automated GitHub Pages deployment work
 >
 > **To fix it instantly, choose one of these two options in GitHub:**
 >
-> * **Option A (Recommended — GitHub Actions):**
->   1. Go to your repository **Settings** > **Pages** (in the left sidebar).
->   2. Under **Build and deployment** > **Source**, change from *"Deploy from a branch"* to **GitHub Actions**.
->   3. Go to the **Actions** tab on GitHub, click **Deploy to GitHub Pages**, and click **Run workflow**.
+> * **Option A (GitHub Actions with `github-pages` environment):**
+>   1. Go to your repository **Settings** > **Pages** (in the left sidebar under *Code and automation*).
+>   2. Under **Build and deployment** > **Source**, select **GitHub Actions** (from the dropdown).
+>      *(This step automatically creates and links the `github-pages` environment required by the workflow).*
+>   3. In `.github/workflows/deploy-pages.yml`, the `deploy` job is already configured with:
+>      ```yaml
+>      environment:
+>        name: github-pages
+>        url: ${{ steps.deployment.outputs.page_url }}
+>      ```
+>   4. Go to the **Actions** tab on GitHub, click **Deploy to GitHub Pages**, and click **Run workflow** (or simply git push).
 >
-> * **Option B (Deploy from branch using `/docs` folder):**
->   1. In repository **Settings** > **Pages**, leave **Source** as *"Deploy from a branch"*.
->   2. Select Branch: **main**, and change the folder dropdown from **`/ (root)`** to **`/docs`**.
+> * **Option B (Deploy from branch using `/docs` folder — No environment needed):**
+>   1. In repository **Settings** > **Pages**, keep **Source** as *"Deploy from a branch"*.
+>   2. Under **Branch**, select **main** and select folder **`/docs`** (instead of `/ (root)`).
 >   3. Click **Save**. The `/docs` folder in this repo contains the pre-compiled, production-ready static assets!
 
 #### 2. Automated CI/CD:
