@@ -196,13 +196,24 @@ The fastest way to deploy this Vite application:
 
 This repository includes a pre-configured automated GitHub Pages deployment workflow (`.github/workflows/deploy-pages.yml`) and relative asset path configuration (`base: './'`), so it works out of the box without requiring manual URL editing.
 
-#### 1. Enable GitHub Actions for Pages:
-1. Push your code to your GitHub repository.
-2. In your repository on GitHub, click **Settings** (gear icon).
-3. In the left navigation sidebar under *Code and automation*, click **Pages**.
-4. Under **Build and deployment** > **Source**, select **GitHub Actions** (instead of "Deploy from a branch").
+#### 1. Enable GitHub Pages Deployment (Fix for Blank Screen)
 
-#### 2. Trigger Deployment:
+> **⚠️ If your live site currently shows a blank white page:**  
+> GitHub Pages by default tries to serve raw uncompiled files from `main` / `root (/)`. Because browsers cannot execute raw React TypeScript (`.tsx`) code, the screen remains blank.
+>
+> **To fix it instantly, choose one of these two options in GitHub:**
+>
+> * **Option A (Recommended — GitHub Actions):**
+>   1. Go to your repository **Settings** > **Pages** (in the left sidebar).
+>   2. Under **Build and deployment** > **Source**, change from *"Deploy from a branch"* to **GitHub Actions**.
+>   3. Go to the **Actions** tab on GitHub, click **Deploy to GitHub Pages**, and click **Run workflow**.
+>
+> * **Option B (Deploy from branch using `/docs` folder):**
+>   1. In repository **Settings** > **Pages**, leave **Source** as *"Deploy from a branch"*.
+>   2. Select Branch: **main**, and change the folder dropdown from **`/ (root)`** to **`/docs`**.
+>   3. Click **Save**. The `/docs` folder in this repo contains the pre-compiled, production-ready static assets!
+
+#### 2. Automated CI/CD:
 - Every time you push to the `main` branch, the `.github/workflows/deploy-pages.yml` workflow will automatically build your project and deploy it to GitHub Pages.
 - You can also manually trigger a build anytime under the **Actions** tab by selecting **Deploy to GitHub Pages** > **Run workflow**.
 
